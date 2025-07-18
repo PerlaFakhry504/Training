@@ -1,0 +1,83 @@
+<template>
+  <lightning-card title="Calculator" >
+  
+    <!-- ROW 1: full‑width display -->
+    <lightning-layout>
+      <lightning-layout-item size="12" class="slds-has-divider_bottom slds-wrap">
+        <lightning-input
+          class="calculator-screen"
+          label="Screen"
+          variant="label-hidden"
+          type="text"
+          value={displayValue}
+          readonly
+        ></lightning-input>
+      </lightning-layout-item>
+    </lightning-layout>
+  
+    <!-- ROW 2: 1  2  3  + -->
+    <lightning-layout class="slds-has-divider_bottom">
+      <lightning-layout-item size="3">
+        <lightning-button label="1" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="2" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="3" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="+" variant="brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+    </lightning-layout>
+  
+    <!-- ROW 3: 4  5  6  – -->
+    <lightning-layout class="slds-has-divider_bottom">
+      <lightning-layout-item size="3">
+        <lightning-button label="4" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="5" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="6" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="-" variant="brand" onclick={handleButtonClick} stretch style="display: inline-block; width: 6.67vh"></lightning-button>
+      </lightning-layout-item>
+    </lightning-layout>
+  
+    <!-- ROW 4: 7  8  9  × -->
+    <lightning-layout class="slds-has-divider_bottom">
+      <lightning-layout-item size="3">
+        <lightning-button label="7" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="8" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="9" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="×" variant="brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+    </lightning-layout>
+  
+    <!-- ROW 5: CLR 0 = ÷ -->
+    <lightning-layout>
+      <lightning-layout-item size="3">
+        <lightning-button label="CLR" variant="destructive-text" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="0" variant="outline-brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="=" variant="success" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <lightning-button label="÷" variant="brand" onclick={handleButtonClick}></lightning-button>
+      </lightning-layout-item>
+    </lightning-layout>
+  
+  </lightning-card>
+</template>

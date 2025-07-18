@@ -1,0 +1,11 @@
+/* Stretch the input to fill the row, right‑align text, and bump up font size */
+.calculator-screen {
+  width: 100%;
+  text-align: right;
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+lightning-card{
+    width: 50%;
+}
