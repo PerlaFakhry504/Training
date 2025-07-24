@@ -1,0 +1,33 @@
+.card {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    width: 250px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.status-button.online {
+    background-color: #28a745; /* green */
+    color: white;
+}
+
+.status-button.offline {
+    background-color: #dc3545; /* red */
+    color: white;
+}
+
+button:last-of-type {
+    margin-left: 10px;
+    background-color: #007bff; /* blue */
+    color: white;
+}

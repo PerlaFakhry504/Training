@@ -1,0 +1,22 @@
+<template>
+  <lightning-card title="Contact Info" icon-name="standard:contact">
+    <div class="slds-p-around_medium">
+      <lightning-input
+        label="First Name"
+        value={firstName}
+        onchange={handleFirstNameChange}>
+      </lightning-input>
+      <lightning-input
+        label="Email"
+        type="email"
+        value={email}
+        onchange={handleEmailChange}>
+      </lightning-input>
+      <lightning-button
+        variant="brand"
+        label="Save"
+        onclick={handleSave}>
+      </lightning-button>
+    </div>
+  </lightning-card>
+</template>

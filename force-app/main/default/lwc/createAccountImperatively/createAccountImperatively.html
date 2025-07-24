@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Create Account" icon-name="action:approval">
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Creating Account..." size="large"></lightning-spinner>
+        </template>
+
+        <lightning-input
+            label ="Enter Account Name"
+            onchange={handleChange}
+            value={accountName}>
+        </lightning-input>
+
+        <lightning-button
+            label="Create"
+            onclick={handleClick}
+            class="slds-m-top_small">
+        </lightning-button>
+
+    </lightning-card>
+</template>

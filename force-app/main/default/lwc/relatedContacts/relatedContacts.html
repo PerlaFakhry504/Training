@@ -1,0 +1,62 @@
+<template>
+    <lightning-card title="Related Contacts" icon-name="standard:contact_list" >
+        <!-- List -->
+        <template if:true={contacts}>
+            
+            <ul class="slds-list_vertical
+              slds-list_vertical-space
+              slds-p-horizontal_medium
+              slds-p-vertical_x-small">
+            <template for:each={contacts} for:item="ct">
+                <li
+                key={ct.Id}
+                class="slds-grid
+               slds-grid_vertical-align-center
+               slds-grid_align-spread
+               slds-p-vertical_x-small
+               slds-p-horizontal_small" >
+                
+                <!-- Left side: the full name -->
+                <span>{ct.FirstName} {ct.LastName}</span>
+                
+                <!-- Right side: the button -->
+                <lightning-button-icon
+                icon-name="utility:edit"
+                alternative-text="Edit"
+                title="Edit"
+                data-id={ct.Id}
+                onclick={handleEdit}
+                size="small"
+                class="slds-m-left_medium">
+            </lightning-button-icon>
+        </li>
+    </template>
+</ul>
+</template>
+
+<template if:true={error}>
+    <p class="slds-text-color_error">{error}</p>
+</template>
+
+</lightning-card>
+
+<!-- Modal -->
+<template if:true={showModal}>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <h2>Edit Contact</h2>
+            </header>
+            <div class="slds-modal__content">
+                <!-- child component goes here -->
+                <c-contact-edit-modal
+                contact-id={selectedContactId}
+                oncancel={handleClose}
+                onsave={handleSave}>
+            </c-contact-edit-modal>
+        </div>
+    </div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+</template>

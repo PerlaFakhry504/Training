@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Open Cases" icon-name="standard:case">
+        <div class="slds-p-around_medium" key={refreshKey}>
+            <template if:true={cases.length}>
+                <template for:each={cases} for:item="caseItem">
+                    <div key={caseItem.Id} class="slds-box slds-m-bottom_small slds-theme_default">
+                        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                            <!-- Case Info -->
+                            <div class="slds-col slds-size_10-of-12">
+                                <p class="slds-text-heading_small slds-m-bottom_xx-small">{caseItem.Subject}</p>
+                                <p><strong>Case #:</strong> {caseItem.CaseNumber}</p>
+                                <p><strong>Status:</strong> {caseItem.Status}</p>
+                                <p><strong>Priority:</strong> {caseItem.Priority}</p>
+                            </div>
+
+                            <!-- Close Button -->
+                            <div class="slds-col slds-size_2-of-12 slds-text-align_right">
+                                <lightning-button
+                                    label="Close"
+                                    title="Close this case"
+                                    icon-name="utility:check"
+                                    variant="destructive"
+                                    data-id={caseItem.Id}
+                                    onclick={handleCloseCase}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template if:false={cases.length}>
+                <div class="slds-text-align_center slds-text-color_weak slds-m-vertical_medium">
+                    No open cases found.
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

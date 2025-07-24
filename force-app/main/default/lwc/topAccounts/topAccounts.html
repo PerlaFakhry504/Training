@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Top 5 Accounts by Opportunity Amount" icon-name="standard:account">
+        <!-- Error message -->
+        <template if:true={error}>
+            <p class="slds-text-color_error slds-p-horizontal_medium">
+                {errorMessage}
+            </p>
+        </template>
+        
+        <!-- Account list -->
+        <template if:true={accounts}>
+            <div class="slds-p-horizontal_medium slds-var-m-vertical_small">
+                <template for:each={accounts} for:item="acct">
+                    <p key={acct.Id} class="slds-text-heading_small slds-var-m-vertical_x-small">
+                        <strong>{acct.Name}</strong>&nbsp;—&nbsp;
+                        &dollar;{acct.parsedAmount}
+                    </p>
+                </template>
+            </div>
+        </template>
+    </lightning-card>
+</template>

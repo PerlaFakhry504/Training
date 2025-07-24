@@ -1,0 +1,9 @@
+<template>
+    <div class="card">
+    <h1> {currentUser.name} </h1>
+    <p> <strong> Title: </strong> {currentUser.title}</p>
+    <p> <strong> Email: </strong> {currentUser.email}</p>
+    <button class={statusClass} onclick = {userstatus} > {currentUser.status} </button>
+    <button onclick = {switchusers} > Switch User </button>
+    </div>
+</template>

@@ -1,0 +1,134 @@
+<template>
+    <lightning-card title="📝 Call for Review">
+        <div class="slds-p-around_medium custom-container">
+
+            <lightning-messages></lightning-messages>
+
+            <!-- 🔷 Overall Info -->
+            <lightning-card title="General Missing Info" icon-name="utility:info_alt" class="slds-m-bottom_medium">
+                <div class="slds-p-around_small">
+                    <lightning-textarea
+                        label="Describe the overall missing information"
+                        value={missingInfoDescription}
+                        onchange={handleMissingInfoDescriptionChange}
+                        max-length="32768"
+                        placeholder="What information is missing across the Work Order?"
+                        class="styled-textarea">
+                    </lightning-textarea>
+                </div>
+            </lightning-card>
+
+            <!-- 🔷 Document Sections -->
+            <lightning-accordion allow-multiple-sections-open>
+                <template for:each={documentSectionsWithSelection} for:item="section">
+                    <lightning-accordion-section name={section.label} label={section.fullLabel} key={section.label}>
+                        
+                        <!-- Existing Files -->
+                        <lightning-card title="📂 Existing Files" class="slds-m-bottom_medium">
+                            <div class="slds-p-around_small">
+                                <template if:true={section.files.length}>
+                                    <template for:each={section.files} for:item="file">
+                                        <lightning-input
+                                            type="checkbox"
+                                            label={file.Title}
+                                            data-id={file.Id}
+                                            checked={file.isSelected}
+                                            onchange={handleCheckboxChange}
+                                            key={file.Id}
+                                            class="file-checkbox">
+                                        </lightning-input>
+                                    </template>
+                                </template>
+                                <template if:false={section.files.length}>
+                                    <p class="slds-text-color_weak">No existing files found for this section.</p>
+                                </template>
+                            </div>
+                        </lightning-card>
+
+                        <!-- Requested Documents -->
+                        <lightning-card title="➕ Request New Documents" class="slds-m-bottom_medium">
+                            <div class="slds-p-around_small">
+
+                                <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
+                                    <h4 class="slds-text-heading_small">Requested Files:</h4>
+                                    <lightning-button-icon
+                                        icon-name="utility:add"
+                                        variant="brand"
+                                        alternative-text="Add Document"
+                                        title="Add new document request"
+                                        size="small"
+                                        data-section={section.type}
+                                        onclick={handleAddDocumentInput}
+                                        class="add-doc-button">
+                                    </lightning-button-icon>
+                                </div>
+
+                                <template if:true={section.requestedDocs.length}>
+                                    <template for:each={section.requestedDocs} for:item="docInput" for:index="index">
+                                        <div key={docInput.id} class="document-input-row">
+                                            <div class="slds-grid slds-gutters_small">
+                                                <div class="slds-col slds-size_11-of-12">
+                                                    <lightning-input
+                                                        value={docInput.value}
+                                                        label={docInput.label}
+                                                        placeholder="Document name"
+                                                        data-section={section.type}
+                                                        data-index={index}
+                                                        onchange={handleRequestInputChange}
+                                                        variant="label-hidden">
+                                                    </lightning-input>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-12 slds-text-align_center">
+                                                    <lightning-button-icon
+                                                        icon-name="utility:delete"
+                                                        variant="destructive"
+                                                        alternative-text="Remove"
+                                                        size="small"
+                                                        title="Remove"
+                                                        data-section={section.type}
+                                                        data-index={index}
+                                                        onclick={handleRemoveDocumentInput}
+                                                        class="remove-doc-button">
+                                                    </lightning-button-icon>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+
+                                <template if:false={section.requestedDocs.length}>
+                                    <p class="slds-text-color_weak slds-text-align_center">
+                                        Click the ➕ button to request documents.
+                                    </p>
+                                </template>
+                            </div>
+                        </lightning-card>
+
+                        <!-- Section-specific Missing Info -->
+                        <lightning-card title="📝 Section Comments" class="slds-m-bottom_medium">
+                            <div class="slds-p-around_small">
+                                <lightning-textarea
+                                    label={section.missingInfoLabel}
+                                    placeholder={section.placeholder}
+                                    data-section={section.type}
+                                    onchange={handleSectionMissingInfoChange}
+                                    max-length="32768"
+                                    class="styled-textarea">
+                                </lightning-textarea>
+                            </div>
+                        </lightning-card>
+                    </lightning-accordion-section>
+                </template>
+            </lightning-accordion>
+
+            <!-- 🔷 Submit -->
+            <div class="slds-m-top_medium slds-align_absolute-center">
+                <lightning-button
+                    variant="brand"
+                    label="🚀 Submit Review"
+                    onclick={handleSubmit}>
+                </lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

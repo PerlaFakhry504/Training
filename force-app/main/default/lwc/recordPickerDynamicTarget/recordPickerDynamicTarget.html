@@ -1,0 +1,40 @@
+<template>
+  <!-- 1. Object selector -->
+  <template if:true={showObjectSelector}>
+    <lightning-combobox
+      name="object"
+      label="Select Object"
+      placeholder="Choose an object..."
+      options={objectOptions}
+      value={selectedObject}
+      onchange={handleObjectChange}>
+    </lightning-combobox>
+  </template>
+
+  <!-- 2. Record picker for that object -->
+  <template if:true={showRecordPicker}>
+    <lightning-record-picker
+      label="Search Records"
+      placeholder="Type to search..."
+      object-api-name={selectedObject}
+      display-info={displayInfo}
+      matching-info={matchingInfo}
+      value={selectedRecordId}
+      onchange={handleRecordChange}>
+    </lightning-record-picker>
+  </template>
+
+  <!-- 3. Once chosen, show the selection and allow reset -->
+  <template if:true={selectedRecordId}>
+    <p class="slds-p-vertical_small">
+      Selected <b>{selectedObject}</b> record: <code>{selectedRecordId}</code>
+    </p>
+    <lightning-button
+      variant="neutral"
+      label="Change Object/Record"
+      onclick={resetAll}>
+    </lightning-button>
+  </template>
+</template>
+
+
